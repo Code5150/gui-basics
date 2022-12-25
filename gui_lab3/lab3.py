@@ -245,9 +245,8 @@ class ui_MainWindow(object):
             table.setRowCount(rowCount)
 
     def comboBoxChanged(self, a0: str):
+        table = self.tableWidget_3
         if self.databaseConnection.connected():
-            table = self.tableWidget_3
-            table.setHorizontalHeaderLabels([a0])
             rowCount = 0
             rows = Book.select()
             print(rows.sql())
@@ -256,6 +255,7 @@ class ui_MainWindow(object):
                 table.setItem(rowCount, 0, QTableWidgetItem(str(row.get_by_attr_name(self.comboBoxOptions[a0]))))
                 rowCount += 1
             table.setRowCount(rowCount)
+        table.setHorizontalHeaderLabels([a0])
 
     def twoAuthorsClicked(self):
         if self.databaseConnection.connected():
